@@ -172,4 +172,65 @@ ORDER BY total_orders DESC
 
 LIMIT 3
 
-### 11) 
+### 11) Average Review Ratings [Amazon SQL Interview Question]
+
+https://datalemur.com/questions/sql-avg-review-ratings
+
+SELECT EXTRACT('Month' FROM submit_date) AS mth , product_id as product , ROUND(AVG(stars),2) as avg_stars
+
+FROM reviews 
+
+GROUP BY product_id,  EXTRACT('Month' FROM submit_date)
+
+ORDER BY mth , product_id
+
+### 12) Final Account Balance [Paypal SQL Interview Question]
+
+https://datalemur.com/questions/final-account-balance
+
+SELECT account_id , 
+
+  SUM(CASE 
+  
+       WHEN transaction_type = 'Deposit' THEN (amount)
+       
+       WHEN transaction_type = 'Withdrawal' THEN (-amount)
+       
+      END) AS final_balance
+
+
+FROM transactions 
+
+GROUP BY account_id
+
+### 13) QuickBooks vs TurboTax [Intuit SQL Interview Question]
+
+https://datalemur.com/questions/quickbooks-vs-turbotax
+
+WITH T AS (
+
+  SELECT COUNT(filing_id) AS turbotax_total
+  
+  FROM filed_taxes 
+  
+  WHERE product LIKE '%TurboTax%' ),
+  
+ Q AS (
+
+  SELECT COUNT(filing_id) AS quickbooks_total
+  
+  FROM filed_taxes 
+  
+  WHERE product LIKE '%QuickBooks%'
+
+)
+
+SELECT * FROM T, Q
+
+### 14) App Click-through Rate (CTR) [Facebook SQL Interview Question]
+
+https://datalemur.com/questions/click-through-rate
+
+
+
+
