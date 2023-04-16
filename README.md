@@ -73,4 +73,67 @@ AS sq
 
 GROUP BY sq.tweet_bucket
 
-### 6) 
+### 6) Laptop vs. Mobile Viewership [New York Times SQL Interview Question]
+
+https://datalemur.com/questions/laptop-mobile-viewership
+
+WITH l_cte AS (
+
+SELECT COUNT(user_id)  AS lv
+
+FROM viewership 
+
+WHERE device_type = 'laptop' 
+
+),
+
+m_cte AS (
+
+SELECT (COUNT(*))  AS mv
+
+FROM viewership 
+
+WHERE device_type = 'tablet' OR device_type = 'phone'
+
+)
+
+SELECT l_cte.lv AS laptop_views,  m_cte.mv AS mobile_views
+
+### 7) Duplicate Job Listings [Linkedin SQL Interview Question]
+
+https://datalemur.com/questions/duplicate-job-listings
+
+WITH cte AS
+
+
+(SELECT company_id, title, description, count(*)
+
+FROM job_listings
+
+GROUP BY company_id, title, description
+
+HAVING count(*) > 1)
+
+SELECT COUNT(*) 
+
+FROM cte
+
+### 8) Average Post Hiatus (Part 1) [Facebook SQL Interview Question]
+
+https://datalemur.com/questions/sql-average-post-hiatus-1
+
+SELECT sq.user_id , sq.days_between 
+
+FROM(
+
+SELECT user_id , EXTRACT('Days' FROM MAX(post_date) - MIN(post_date)) AS days_between
+
+FROM posts 
+
+WHERE EXTRACT('Year' FROM post_date) = '2021' 
+
+GROUP BY user_id ) AS sq
+
+WHERE sq.days_between > 0 
+
+### 9) 
