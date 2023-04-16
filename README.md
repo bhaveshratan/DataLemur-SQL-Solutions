@@ -136,4 +136,40 @@ GROUP BY user_id ) AS sq
 
 WHERE sq.days_between > 0 
 
-### 9) 
+### 9) Teams Power Users [Microsoft SQL Interview Question]
+
+https://datalemur.com/questions/teams-power-users
+
+SELECT sender_id , COUNT(*) AS message_count
+
+FROM messages 
+
+WHERE EXTRACT('Month' FROM sent_date) = '8' AND EXTRACT('Year' FROM sent_date) = '2022'
+
+GROUP BY sender_id
+
+ORDER BY message_count DESC
+
+LIMIT 2
+
+### 10) Cities With Completed Trades [Robinhood SQL Interview Question]
+
+https://datalemur.com/questions/completed-trades
+
+SELECT u.city  , COUNT(t.status) as total_orders
+
+FROM users u 
+
+RIGHT JOIN trades t  
+
+ON u.user_id = t.user_id
+
+WHERE t.status = 'Completed'
+
+GROUP BY u.city
+
+ORDER BY total_orders DESC
+
+LIMIT 3
+
+### 11) 
