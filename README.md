@@ -231,6 +231,56 @@ SELECT * FROM T, Q
 
 https://datalemur.com/questions/click-through-rate
 
+WITH Click AS  (
+
+SELECT app_id, COUNT(event_type) AS c
+
+FROM events 
+
+WHERE event_type LIKE 'click' AND EXTRACT('Year' FROM timestamp) = '2022'
+
+GROUP BY app_id) ,
+
+ imp AS ( 
+
+SELECT app_id, COUNT(event_type) AS i
+
+FROM events 
+
+WHERE event_type LIKE 'impression' AND EXTRACT('Year' FROM timestamp) = '2022'
+
+GROUP BY app_id)
+
+SELECT imp.app_id , ROUND( 100.0* click.c / imp.i  , 2) AS ctr
+
+FROM click 
+
+INNER JOIN imp
+
+ON click.app_id = imp.app_id
+
+### 15) Cards Issued Difference [JPMorgan Chase SQL Interview Question]
+
+https://datalemur.com/questions/cards-issued-difference
+
+SELECT card_name	, MAX(issued_amount) - MIN(issued_amount) AS difference
+
+FROM monthly_cards_issued 
+
+GROUP BY card_name
+
+ORDER BY difference DESC
+
+### 16) Compressed Mean [Alibaba SQL Interview Question]
+
+https://datalemur.com/questions/alibaba-compressed-mean
+
+SELECT ROUND( 1.0*SUM(item_count*order_occurrences) / SUM(order_occurrences) ,1) AS mean
+ 
+FROM items_per_order ;
+
+### 17) 
+
 
 
 
