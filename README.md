@@ -279,7 +279,23 @@ SELECT ROUND( 1.0*SUM(item_count*order_occurrences) / SUM(order_occurrences) ,1)
  
 FROM items_per_order ;
 
-### 17) 
+### 17) https://datalemur.com/questions/frequent-callers
+
+Patient Support Analysis (Part 1) [UnitedHealth SQL Interview Question]
+
+SELECT COUNT(sq.policy_holder_id) AS member_count
+
+FROM(
+
+SELECT policy_holder_id 
+
+FROM callers
+
+GROUP BY policy_holder_id 
+
+HAVING COUNT(case_id) >= 3 ) AS sq
+
+### 18) 
 
 
 
