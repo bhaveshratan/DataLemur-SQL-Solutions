@@ -299,7 +299,7 @@ HAVING COUNT(case_id) >= 3 ) AS sq
 
 https://datalemur.com/questions/uncategorized-calls-percentage
 
-SELECT  ROUND((100.0 * COUNT(*)) / (SELECT COUNT(*) FROM callers),1) AS call_percentage
+SELECT  ROUND((100.0 * COUNT( * )) / (SELECT COUNT( * ) FROM callers),1) AS call_percentage
 
 FROM callers
 
