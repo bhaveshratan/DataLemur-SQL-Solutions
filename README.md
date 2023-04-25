@@ -295,7 +295,17 @@ GROUP BY policy_holder_id
 
 HAVING COUNT(case_id) >= 3 ) AS sq
 
-### 18) 
+### 18) Patient Support Analysis (Part 2) [UnitedHealth SQL Interview Question]
+
+https://datalemur.com/questions/uncategorized-calls-percentage
+
+SELECT  ROUND((100.0 * COUNT(*)) / (SELECT COUNT(*) FROM callers),1) AS call_percentage
+
+FROM callers
+
+WHERE call_category IS NULL OR call_category LIKE 'n/a' 
+
+### 19) 
 
 
 
