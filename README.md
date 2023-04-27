@@ -305,7 +305,23 @@ FROM callers
 
 WHERE call_category IS NULL OR call_category LIKE 'n/a' 
 
-### 19) 
+### 19) User's Third Transaction [Uber SQL Interview Question]
+
+https://datalemur.com/questions/sql-third-transaction
+
+SELECT sq.user_id , sq.spend , sq.transaction_date 
+
+FROM
+
+(SELECT * , ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY transaction_date ASC) as rn
+
+FROM transactions ) AS sq
+
+WHERE rn = 3
+
+### 20) Sending vs. Opening Snaps [Snapchat SQL Interview Question]
+
+
 
 
 
