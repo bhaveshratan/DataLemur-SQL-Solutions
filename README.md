@@ -58,6 +58,8 @@ WHERE page_id NOT IN (
   FROM page_likes
   
   )
+ 
+ ORDER BY page_id
 
 ### 4) Unfinished Parts [Tesla SQL Interview Question]
 
