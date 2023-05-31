@@ -31,6 +31,8 @@ ORDER BY candidate_id;
 
 https://datalemur.com/questions/sql-page-with-no-likes
 
+#Method 1
+
 SELECT p.page_id 
 
 FROM pages p
@@ -42,6 +44,20 @@ ON p.page_id = l.page_id
 WHERE liked_date IS NULL
 
 ORDER BY p.page_id 
+
+#Method 2
+
+SELECT page_id
+
+FROM pages
+
+WHERE page_id NOT IN (
+
+  SELECT page_id 
+  
+  FROM page_likes
+  
+  )
 
 ### 4) Unfinished Parts [Tesla SQL Interview Question]
 
