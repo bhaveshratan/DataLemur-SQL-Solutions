@@ -121,6 +121,8 @@ SELECT l_cte.lv AS laptop_views,  m_cte.mv AS mobile_views
 
 https://datalemur.com/questions/duplicate-job-listings
 
+#Method1
+
 WITH cte AS
 
 
@@ -135,6 +137,22 @@ HAVING count(*) > 1)
 SELECT COUNT(*) 
 
 FROM cte
+
+#Method2
+
+SELECT COUNT(*)
+
+FROM(
+
+SELECT company_id
+
+FROM job_listings 
+
+GROUP BY company_id , title , description
+
+HAVING COUNT(*) > 1
+
+) AS sq
 
 ### 8) Average Post Hiatus (Part 1) [Facebook SQL Interview Question]
 
