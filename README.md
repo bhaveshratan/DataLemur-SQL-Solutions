@@ -311,9 +311,21 @@ ORDER BY difference DESC
 
 https://datalemur.com/questions/alibaba-compressed-mean
 
-SELECT ROUND( 1.0*SUM(item_count*order_occurrences) / SUM(order_occurrences) ,1) AS mean
+#Method1
+
+SELECT ROUND( 1.0 * SUM(item_count*order_occurrences) / SUM(order_occurrences) ,1) AS mean
  
 FROM items_per_order ;
+
+#Method2 - Using CAST() : Change type to decimal for rounding , changing it to float will give an error
+
+SELECT 
+
+   ROUND(CAST(SUM(item_count*order_occurrences) AS decimal ) /  CAST(SUM(order_occurrences) AS decimal ) , 1) 
+        
+ as mean
+
+FROM items_per_order 
 
 ### 17) https://datalemur.com/questions/frequent-callers
 
