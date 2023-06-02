@@ -369,6 +369,27 @@ WHERE rn = 3
 
 ### 20) Sending vs. Opening Snaps [Snapchat SQL Interview Question]
 
+https://datalemur.com/questions/time-spent-snaps
+
+WITH cte AS 
+
+  (SELECT ag.age_bucket as age_bucket,
+       SUM(CASE WHEN activity_type='open' THEN time_spent ELSE 0 END) AS open,
+       SUM(CASE WHEN activity_type='send' THEN time_spent ELSE 0 END) AS send,
+       SUM(CASE WHEN activity_type IN ('open','send') THEN time_spent ELSE 0 END) AS open_send
+FROM activities ac   
+LEFT JOIN age_breakdown ag    
+ON ac.user_id = ag.user_id
+GROUP BY ag.age_bucket )
+
+SELECT age_bucket,
+       ROUND((100.0*send/open_send),2) AS send_perc,
+       ROUND((100.0*open/open_send),2) AS open_perc
+FROM cte
+
+
+          
+
 
 
 
