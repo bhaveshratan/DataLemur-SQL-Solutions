@@ -383,9 +383,12 @@ ON ac.user_id = ag.user_id
 GROUP BY ag.age_bucket )
 
 SELECT age_bucket,
-       ROUND((100.0*send/open_send),2) AS send_perc,
-       ROUND((100.0*open/open_send),2) AS open_perc
+       ROUND((100.0 * send/open_send),2) AS send_perc,
+       ROUND((100.0 * open/open_send),2) AS open_perc
 FROM cte
+
+
+###21)
 
 
           
